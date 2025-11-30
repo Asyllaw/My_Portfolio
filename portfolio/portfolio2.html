@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lawrence | Portfolio</title>
+  <link rel='stylesheet' type='text/css' media='screen' href='css/style.css'>
+</head>
+<body>
+  <!-- Background layers -->
+  <div class="animated-bg" aria-hidden="true"></div>
+  <div id="particles-js"></div>
+
+  <!-- Header -->
+  <header>
+    <h1>Lawrence Yetu Ajoka</h1>
+    <nav>
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+
+      <!-- inline SVG toggle (fade swap) -->
+      <button id="themeToggle" class="toggle-btn" aria-label="Toggle theme">
+        <svg class="icon-light" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="icon-dark" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Content wrapper -->
+  <main class="container main-content">
+
+    <!-- HERO -->
+    <section id="home" class="hero reveal">
+      <div>
+        <h2>I Build <span class="highlight">Modern Websites</span><br>& Motion Designs</h2>
+        <p class="muted">Creative web designer, Python programmer, and motion graphics artist passionate about blending technology with aesthetics.</p>
+        <div style="margin-top:20px;">
+          <button class="btn btn-primary">View Projects</button>
+          <button class="btn btn-outline">Contact Me</button>
+        </div>
+      </div>
+      <div class="box" role="img" aria-label="Motion preview">
+        <img src="images/generated-image.png">
+        </div>
+    </section>
+
+     <!-- About Section -->
+    <section id="about" class="about-section">
+      <h2>About Me</h2>
+      <p id="aboutContent">Loading...</p>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+      <h2>Projects</h2>
+      <div id="projectContainer" class="grid grid-3"></div>
+    </section>
+
+
+    <!-- SKILLS -->
+    <section id="skills" class="reveal">
+      <h3>My Skills</h3>
+      <div class="grid grid-3" style="margin-top:20px;">
+        <div class="card">
+          <h4>Web Design</h4>
+          <p class="muted">Crafting responsive, modern, and aesthetic websites with clean code.</p>
+        </div>
+        <div class="card">
+          <h4>UI/UX</h4>
+          <p class="muted">Designing smooth user interfaces and experiences for better engagement.</p>
+        </div>
+        <div class="card">
+          <h4>Motion Graphics</h4>
+          <p class="muted">Creating animated visuals and motion graphics to bring ideas to life.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="reveal">
+      <h3>Featured Projects</h3>
+      <div class="grid grid-2 mt-20">
+        <div class="card project">
+          <img src="" alt="" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0; background:#ddd">
+          <h4 style="margin-top:12px;">Creative Agency Website</h4>
+          <p class="muted">A sleek web experience for a modern digital agency.</p>
+        </div>
+        <div class="card project">
+          <img src="" alt="" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0; background:#ddd">
+          <h4 style="margin-top:12px;">Motion Graphics Reel</h4>
+          <p class="muted">A showcase of animations and motion design experiments.</p>
+        </div>
+      </div>
+    </section> 
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal">
+      <h3>Let’s Connect</h3>
+      <p class="muted">Interested in working together? Reach out and let’s create something amazing.</p>
+      <div style="margin-top:16px;">
+        <button class="btn btn-primary" id="openModalBtn">Send Message</button>
+      </div>
+    </section>
+      <div id="contactModal" class="modal">
+    <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close-button">&times;</span>
+          <h2>Contact Me</h2>
+          <form action="#" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+      </div>
+    <!-- FOOTER -->
+    <footer class="reveal" style="margin-top:40px;">
+      © <span id="year"></span> Lawrence. All rights reserved.
+      <div class="socials" style="margin-top:12px;">
+        <a href="https://github.com/Asyllaw" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://instagram.com/yourusername" target="_blank" rel="noopener">Instagram</a>
+        <a href="mailto:asyl4real@gmail.com" target="_blank" rel="noopener">Email</a>
+      </div>
+    </footer>
+  </main>
+  <script src="https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.min.js"></script>
+  <script src="js/funct.js"></script>
+</body>
+</html>

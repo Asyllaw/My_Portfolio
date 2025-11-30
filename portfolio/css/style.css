@@ -1,0 +1,408 @@
+  /* ---------- Layout & Basics ---------- */
+    :root{
+      --cyan: #06b6d4;
+      --purple: #9333ea;
+      --bg-light: #f9fafb;
+      --text-light: #111827;
+      --bg-dark: #0f172a;
+      --text-dark: #f8fafc;
+      --transition-fast: 0.25s;
+      --transition-medium: 0.5s;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      margin:0;
+      font-family:Inter, Arial, sans-serif;
+      background:transparent;
+      color:var(--text-light);
+      padding-top:80px; /* space for fixed header */
+      overflow-x:hidden;
+      transition: background var(--transition-medium), color var(--transition-medium);
+      width: 100%;
+      height: 100%;
+    }
+    body.dark {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    /* ---------- Background Layers ---------- */
+    .animated-bg {
+      position: fixed;
+      inset: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, var(--cyan), var(--purple), #ec4899, var(--cyan));
+      filter: blur(120px);
+      opacity: 0.45; /* medium visibility */
+      z-index: -3;
+      pointer-events: none;
+      animation: spin 22s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+
+    /* ---------- Header / Navbar ---------- */
+    header {
+      position: fixed;
+      top:0; left:0;
+      width:100%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:12px 28px;
+      box-sizing:border-box;
+      z-index: 1000;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(6px);
+      transition: background 0.35s ease, box-shadow 0.35s ease, padding 0.25s ease;
+    }
+    body.dark header {
+      background: rgba(8,10,15,0.25);
+    }
+    header.scrolled {
+      box-shadow: 0 6px 18px rgba(2,6,23,0.25);
+      background: rgba(20,20,25,0.72);
+      padding:10px 28px;
+    }
+
+    header h1 {
+      font-size:1.1rem;
+      margin:0;
+      font-weight:700;
+      color:var(--cyan);
+    }
+    .mt-20 { 
+      margin-top:20px;
+     }
+
+    nav {
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+    nav a {
+      color:inherit;
+      text-decoration:none;
+      font-weight:600;
+      padding:6px 8px;
+      border-radius:6px;
+      transition: transform var(--transition-fast), color var(--transition-fast);
+    }
+    nav a:hover { transform: translateY(-2px); color: var(--cyan); }
+    nav a.active { color: var(--cyan); box-shadow: inset 0 -2px 0 var(--cyan); }
+
+    /* ---------- Toggle (inline SVG fade swap) ---------- */
+    .toggle-btn {
+      border: none;
+      background: transparent;
+      width:36px; height:36px;
+      display:inline-grid;
+      place-items:center;
+      position:relative;
+      cursor:pointer;
+      padding:4px;
+      margin-left:8px;
+    }
+    .toggle-btn span {
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition: opacity var(--transition-medium) ease;
+      color:inherit;
+    }
+    .icon-dark { 
+      opacity: 0;
+      color: #fff;
+    }
+    .icon-light { 
+      opacity: 1;
+      color: #f39c12;
+    }
+    body.dark .icon-dark { 
+      opacity: 1; 
+    }
+    body.dark .icon-light { 
+      opacity: 0;
+    }
+    /* style SVG color via currentColor */
+    .toggle-btn svg {
+      position:absolute;
+      width:22px; height:22px;
+      stroke:currentColor; 
+      fill: #fff;
+      opacity:0; transition:opacity .4s ease;
+      top: 0;
+      left: 0 ;
+    }
+    .btn {
+      padding: 12px 24px;
+      border-radius: 20px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      font-weight: bold;
+      margin: 10px;
+    }
+    .btn-primary {
+      background: var(--cyan);
+      color: #fff;
+      transition: background var(--transition-fast), transform var(--transition-fast);
+    }   
+    .btn-primary:hover {
+      background: #0ea5e9;
+      transform: translateY(-2px);
+    } 
+    .btn-outline {
+      border-color: var(--bg-light);
+      color: var(--bg-light);
+      background: transparent;
+    }
+    .btn-outline:hover {
+      border-color: #06b6d4;
+      color: #fff;
+      background: #06b6d4;
+      transform: translateY(-2px)
+    } 
+     
+  
+  /* Particle canvas sits above animated-bg but below page content */
+  #particles-js {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    pointer-events: none;
+    }
+     /* ---------- Main content ---------- */
+    .container { 
+      position:relative; 
+      z-index: 5;
+      max-width:1100px; 
+      margin:0 auto; 
+      padding:40px 20px; 
+    }
+
+    .hero {
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:28px;
+      align-items:center;
+      text-align:center;
+      padding:40px 0;
+    }
+    .hero h2 { font-size:2rem; margin:0; line-height:1.05; font-weight:800; }
+    .highlight { color:var(--cyan); }
+
+    .hero p { color: rgba(0,0,0,0.6); max-width:720px; margin:14px auto 0; }
+    body.dark .hero p { color: rgba(255,255,255,0.65); }
+
+    .hero .box {
+      width:280px; height:280px; border-radius:16px;
+      margin:0 auto;
+      background: linear-gradient(135deg,var(--cyan),var(--purple));
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float { 0%{ transform: translateY(0)} 50%{ transform: translateY(-6px)} 100%{ transform: translateY(0)} }
+    .hero .box img {
+      width:280px; height:280px; border-radius:16px;
+    }
+    /* ---------- Sections ---------- */
+    section { padding:48px 0; position:relative; }
+    .grid { display:grid; gap:20px; }
+    @media(min-width:768px){
+      .grid-2{ grid-template-columns: repeat(2,1fr); }
+      .grid-3{ grid-template-columns: repeat(3,1fr); }
+      .hero { grid-template-columns: 1fr 320px; text-align:left; }
+      .hero .box { margin:0; }
+    }
+
+    .card {
+      background: var(--bg-light);
+      padding:20px;
+      border-radius:12px;
+      box-shadow: 0 8px 20px rgba(2,6,23,0.04);
+      transition: transform 0.26s ease, box-shadow 0.26s ease;
+    }
+    body.dark .card { background: #0f172a; box-shadow: 0 12px 28px rgba(0,0,0,0.3); }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 18px 36px rgba(2,6,23,0.08); }
+
+    /* ---------- Footer / socials ---------- */
+    footer { padding:32px 0; text-align:center; color: rgba(0,0,0,0.55); }
+    body.dark footer { color: rgba(255,255,255,0.65); }
+    .socials { display:flex; gap:16px; justify-content:center; margin-top:8px; }
+    .socials a { color:inherit; transition: transform 0.2s ease; }
+    .socials a:hover { transform: scale(1.12); color:var(--cyan); }
+
+    /* ---------- Reveal on scroll ---------- */
+    .reveal { opacity:0; transform: translateY(30px); transition: all 0.7s ease; }
+    .reveal.active { opacity:1; transform: translateY(0); }
+
+    /* small helpers */
+    .muted { color: rgba(0,0,0,0.55); }
+    body.dark .muted { color: rgba(255,255,255,0.68); }
+
+    /* responsive tweaks */
+    @media(max-width:520px){
+      header { padding:10px 14px; }
+      .toggle-btn { width:34px;height:34px; }
+    }    
+   /* Modal Background */
+.modal {
+  display: none;  
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%; 
+  overflow: none; 
+  background-color: rgba(0, 0, 0, 0.4); 
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: transparent;
+  backdrop-filter: blur(3px);
+  box-shadow: 10px rgba(255, 255, 255, 0.5);
+  margin: 10% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 8px;
+  position: relative;
+  transition: transform 0.26s ease, box-shadow 0.26s ease;
+}
+
+/* Close Button */
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-content form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.modal-content form input[type="text"],
+.modal-content form input[type="email"],
+.modal-content form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensures padding doesn't add to total width */
+}
+.modal-content form button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* ---------- About Section ---------- */
+.about-section {
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-section h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--cyan);
+}
+
+.about-section p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-light);
+  transition: color var(--transition-medium);
+}
+
+body.dark .about-section p {
+  color: var(--text-dark);
+}
+
+/* ---------- Projects Section ---------- */
+.projects-section {
+  padding: 60px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.projects-section h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 28px;
+  text-align: center;
+  color: var(--cyan);
+}
+
+#projectContainer {
+  display: grid;
+  gap: 24px;
+}
+
+@media(min-width: 768px) {
+  #projectContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.project-card {
+  background: var(--bg-light);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(2,6,23,0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 36px rgba(2,6,23,0.1);
+}
+
+body.dark .project-card {
+  background: #0f172a;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  background: #ddd;
+}
+
+.project-card h4 {
+  font-size: 1.1rem;
+  margin: 8px 0 6px;
+  color: var(--cyan);
+}
+
+.project-card p {
+  color: rgba(0,0,0,0.65);
+}
+
+body.dark .project-card p {
+  color: rgba(255,255,255,0.75);
+}
